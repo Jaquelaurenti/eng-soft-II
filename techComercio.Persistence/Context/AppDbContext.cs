@@ -10,5 +10,6 @@ public class AppDbContext : DbContext
     // DB Set ele é a representação de uma tabela
     // que vem do Entities do nosso Domain ao banco de dados
     public DbSet<User> Users { get; set; }
-
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Polices> Polices { get; set; }
 }

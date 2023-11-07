@@ -9,4 +9,33 @@
   <ItemGroup>
     <ProjectReference Include="..\techComercio.Domain\techComercio.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="MediatR" />
+    <None Remove="FluentValidation" />
+    <None Remove="Services\" />
+    <None Remove="Shared\" />
+    <None Remove="UseCases\" />
+    <None Remove="Shared\Behavior\" />
+    <None Remove="Shared\Exceptions\" />
+    <None Remove="UseCases\CreateUser\" />
+    <None Remove="FluentValidation.DependencyInjectionExtensions" />
+    <None Remove="UseCases\CreatePolicies\" />
+    <None Remove="UseCases\CreateProducts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Shared\" />
+    <Folder Include="UseCases\" />
+    <Folder Include="Shared\Behavior\" />
+    <Folder Include="Shared\Exceptions\" />
+    <Folder Include="UseCases\CreateUser\" />
+    <Folder Include="UseCases\CreatePolicies\" />
+    <Folder Include="UseCases\CreateProducts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
+  </ItemGroup>
 </Project>

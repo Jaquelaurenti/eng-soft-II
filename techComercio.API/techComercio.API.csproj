@@ -18,4 +18,15 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="BD\" />
+    <None Remove="Extensions\" />
+    <None Remove="techComercio.db" />
+    <None Remove="techComercio.db-wal" />
+    <None Remove="techComercio.db-shm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BD\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
 </Project>

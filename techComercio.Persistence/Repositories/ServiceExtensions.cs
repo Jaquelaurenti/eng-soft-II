@@ -2,22 +2,29 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-public static  class ServiceExtensions
+// Define um método de extensão
+public static class ServiceExtensions
 {
-   // usar para configurar a camada de persistencia no EF core
-   public static void ConfigurePersistenceApp(
-       this IServiceCollection services, IConfiguration configuration)
+    // Usado para configurar a camada de persistencia no EF Core
+    public static void ConfigurePersistenceApp(
+        this IServiceCollection services,
+        IConfiguration configuration)
     {
-        // recuperar a string de conexão da camada de presentation /api/
+        // usado para recuperar a string de conexão no presentation
         var connectionString = configuration.GetConnectionString("Sqlite");
 
-        // Definir o provedor de banco de dados
-        services.AddDbContext<AppDbContext>(
-            opt => opt.UseSqlite(connectionString));
+        // Definindo o profedor 
+        services.AddDbContext<AppDbContext>(options => options
+        .UseSqlite(connectionString));
 
-        // Toda a construção de escopo da nossa aplicação ficará aqui
+        // Adicionando escopos de instancias unica criado e compartilhado
+        // no mesmo escopo http que utilizar
+        // para cada transação teremos um escopo delesva
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IPoliciesRepository, PoliciesRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>(); 
+
 
     }
 }
