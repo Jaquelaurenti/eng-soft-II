@@ -4,7 +4,7 @@ public class CreatePolicyMapper : Profile
 {
     public CreatePolicyMapper()
     {
-        CreateMap<CreatePolicyRequest, Polices>();
-        CreateMap<Polices, CreatePolicyResponse>();
+        CreateMap<CreatePolicyRequest, Policy>();
+        CreateMap<Policy, CreatePolicyResponse>();
     }
 }

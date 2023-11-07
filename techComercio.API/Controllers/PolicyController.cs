@@ -16,7 +16,7 @@ public class PolicyController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreatePolicyRequest request)
     {
-        var user = await _mediator.Send(request);
-        return Ok(user);
+        var policy = await _mediator.Send(request);
+        return Ok(policy);
     }
 }

@@ -22,7 +22,7 @@ public static class ServiceExtensions
         // para cada transação teremos um escopo delesva
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IPoliciesRepository, PoliciesRepository>();
+        services.AddScoped<IPolicyRepository, PolicyRepository>();
         services.AddScoped<IProductRepository, ProductRepository>(); 
 
 

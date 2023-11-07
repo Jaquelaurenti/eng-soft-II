@@ -1,6 +1,6 @@
 ﻿public enum UserPerfil
 {
-    Silver,
-    Gold,
-    Bronze
+    Silver = 1,
+    Gold = 2,
+    Bronze = 3
 }

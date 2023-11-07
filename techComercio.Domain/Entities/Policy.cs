@@ -1,4 +1,4 @@
-﻿public class Polices : BaseEntity
+﻿public class Policy : BaseEntity
 {
     public TypePolicy TypePolicy { get; set; }
     public UserPerfil UserPerfil { get; set; }

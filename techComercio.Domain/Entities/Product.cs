@@ -5,6 +5,6 @@
     public double Price { get; set; }
     public bool Cashback { get; set; }
     public bool Discount { get; set; }
-    public Polices? Polices { get; set; }
+    public Policy? Policy { get; set; }
 
 }

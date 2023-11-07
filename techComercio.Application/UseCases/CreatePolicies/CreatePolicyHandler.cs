@@ -6,12 +6,12 @@ public class CreatePolicyHandler : IRequestHandler<CreatePolicyRequest, CreatePo
     // unit of work
     private readonly IUnitOfWork _unitOfWork;
     // repository camada de dados
-    private readonly IPoliciesRepository _policyRepository;
+    private readonly IPolicyRepository _policyRepository;
     // mapper
     private readonly IMapper _mapper;
 
 
-    public CreatePolicyHandler(IUnitOfWork unitOfWork, IPoliciesRepository policyRepository,
+    public CreatePolicyHandler(IUnitOfWork unitOfWork, IPolicyRepository policyRepository,
         IMapper mapper)
     {
         _unitOfWork = unitOfWork;
@@ -22,7 +22,7 @@ public class CreatePolicyHandler : IRequestHandler<CreatePolicyRequest, CreatePo
     public async Task<CreatePolicyResponse> Handle(CreatePolicyRequest request, CancellationToken cancellationToken)
     {
         // onde de fato vamos mandar as informações para os nossos bds
-        var policy = _mapper.Map<Polices>(request);
+        var policy = _mapper.Map<Policy>(request);
 
         _policyRepository.Create(policy);
 

@@ -11,5 +11,5 @@ public class AppDbContext : DbContext
     // que vem do Entities do nosso Domain ao banco de dados
     public DbSet<User> Users { get; set; }
     public DbSet<Product> Products { get; set; }
-    public DbSet<Polices> Polices { get; set; }
+    public DbSet<Policy> Policy { get; set; }
 }
