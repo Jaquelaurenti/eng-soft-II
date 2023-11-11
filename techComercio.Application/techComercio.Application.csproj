@@ -18,7 +18,6 @@
     <None Remove="UseCases\" />
     <None Remove="Shared\Behavior\" />
     <None Remove="Shared\Exceptions\" />
-    <None Remove="UseCases\CreateUser\" />
     <None Remove="FluentValidation.DependencyInjectionExtensions" />
     <None Remove="UseCases\CreatePolicies\" />
     <None Remove="UseCases\CreateProducts\" />
@@ -29,7 +28,6 @@
     <Folder Include="UseCases\" />
     <Folder Include="Shared\Behavior\" />
     <Folder Include="Shared\Exceptions\" />
-    <Folder Include="UseCases\CreateUser\" />
     <Folder Include="UseCases\CreatePolicies\" />
     <Folder Include="UseCases\CreateProducts\" />
   </ItemGroup>
@@ -37,5 +35,8 @@
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="UseCases\User\GetAllUser\CreateUserResponse.cs" />
   </ItemGroup>
 </Project>

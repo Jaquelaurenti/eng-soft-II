@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
-public class CreateUserMapper : Profile
+
+public sealed class CreateUserMapper : Profile
 {
     public CreateUserMapper()
     {

@@ -6,3 +6,4 @@ public sealed class User : BaseEntity
     public string Password { get; set; }
     public UserPerfil Perfil { get; set; }
 }
+

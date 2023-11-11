@@ -13,7 +13,7 @@ public static class ServiceExtensions
         // usado para recuperar a string de conexão no presentation
         var connectionString = configuration.GetConnectionString("Sqlite");
 
-        // Definindo o profedor 
+        // Definindo o provedor 
         services.AddDbContext<AppDbContext>(options => options
         .UseSqlite(connectionString));
 

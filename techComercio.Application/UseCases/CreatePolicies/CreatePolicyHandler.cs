@@ -24,10 +24,10 @@ public class CreatePolicyHandler : IRequestHandler<CreatePolicyRequest, CreatePo
         // onde de fato vamos mandar as informações para os nossos bds
         var policy = _mapper.Map<Policy>(request);
 
-        _policyRepository.Create(policy);
+        _policyRepository.Create(policy); // AQUI ELE MANDA UM COMANDO
 
         // aqui chama o nosso controle transacional
-        await _unitOfWork.Commit(cancellationToken);
+        await _unitOfWork.Commit(cancellationToken); // AQUI ELE TRANSACIONA ESSE COMANDO
         return _mapper.Map<CreatePolicyResponse>(policy);
     }
 }
