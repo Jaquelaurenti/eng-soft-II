@@ -23,7 +23,8 @@ public static class ServiceExtensions
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPolicyRepository, PolicyRepository>();
-        services.AddScoped<IProductRepository, ProductRepository>(); 
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IKafkaProducer, KafkaProducer>();
 
 
     }

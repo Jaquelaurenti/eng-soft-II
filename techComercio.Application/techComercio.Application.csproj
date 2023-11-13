@@ -21,6 +21,7 @@
     <None Remove="FluentValidation.DependencyInjectionExtensions" />
     <None Remove="UseCases\CreatePolicies\" />
     <None Remove="UseCases\CreateProducts\" />
+    <None Remove="UseCases\Message\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -30,6 +31,7 @@
     <Folder Include="Shared\Exceptions\" />
     <Folder Include="UseCases\CreatePolicies\" />
     <Folder Include="UseCases\CreateProducts\" />
+    <Folder Include="UseCases\Message\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
