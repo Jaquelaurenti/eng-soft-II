@@ -2,5 +2,5 @@
 
 public sealed record CreateUserRequest(
         string Email, string Name, string Password,
-            UserPerfil UserPerfil) :
+            UserPerfil UserPerfil, string Telephone) :
             IRequest<CreateUserResponse>;

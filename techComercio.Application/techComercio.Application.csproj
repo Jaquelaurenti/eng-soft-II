@@ -22,6 +22,11 @@
     <None Remove="UseCases\CreatePolicies\" />
     <None Remove="UseCases\CreateProducts\" />
     <None Remove="UseCases\Message\" />
+    <None Remove="UseCases\Consumer\" />
+    <None Remove="UseCases\DraftContract\" />
+    <None Remove="UseCases\Contract\" />
+    <None Remove="UseCases\Notifications\" />
+    <None Remove="Twilio" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -32,11 +37,16 @@
     <Folder Include="UseCases\CreatePolicies\" />
     <Folder Include="UseCases\CreateProducts\" />
     <Folder Include="UseCases\Message\" />
+    <Folder Include="UseCases\Consumer\" />
+    <Folder Include="UseCases\DraftContract\" />
+    <Folder Include="UseCases\Contract\" />
+    <Folder Include="UseCases\Notifications\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
+    <PackageReference Include="Twilio" Version="6.11.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="UseCases\User\GetAllUser\CreateUserResponse.cs" />
