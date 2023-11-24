@@ -54,4 +54,56 @@ public class KafkaProducer : IKafkaProducer
         }
 
     }
+
+    public async Task<Message> ProduceAsyncWithRetry(string topic, string sender,
+        string receiver, string content)
+    {
+        var message = new Message
+        {
+            Id = Guid.NewGuid(),
+            Sender = sender,
+            Receiver = receiver,
+            Content = content,
+            Timestamp = DateTime.UtcNow,
+            Status = "em processamento"
+        };
+
+        // Serializar a mensagem
+        string serielizedMessage = JsonSerializer.Serialize(message);
+
+        int maxRetries = 3;
+        int retryIntervalms = 1000;
+
+       for (int attemp = 1; attemp <= maxRetries; attemp ++)
+       {
+            try
+            {
+                // tentativa que deu certo
+                // chamar o método que produz a mensagem do confluente kafka
+                var deliveryReport = await _producer.ProduceAsync(topic, new Message<string, string>
+                {
+                    Value = serielizedMessage
+                });
+
+                message.Status = "com sucesso";
+                break;
+
+            }
+            catch(ProduceException<Null, string> ex)
+            {
+                if(attemp < maxRetries)
+                {
+                    // começa a fazer as retentativas
+                    System.Threading.Thread.Sleep(retryIntervalms);
+                    message.Status = "Retry";                    
+                }
+                else
+                {
+                    throw;
+                    message.Status = "com erro após o retry";                    
+                }
+            }
+        }
+        return message;
+    }
 }
