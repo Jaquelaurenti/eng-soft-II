@@ -1,28 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+
 {
-    // Implementar  a interface IBaseRepository que fornecerá os métodos base definidos na interface
+    // Implementa a interface IBaseRepository de uma entidade
+    // Que irá fornecer os métodos base definidos
 
-    // Encapsular contexto de banco de dados
 
+    // Encapsular o context do banco de dados
     protected readonly AppDbContext Context;
 
     public BaseRepository(AppDbContext context)
     {
-        // injetar a instancia do contexto ao construtor
+        // injetando a instância do meu contexto no construtor da classe
         Context = context;
     }
 
     public void Create(T entity)
     {
         entity.DateCreated = DateTimeOffset.Now;
+        // adiconando ao contexto
         Context.Add(entity);
     }
 
     public void Delete(T entity)
     {
         entity.DateDeleted = DateTimeOffset.Now;
+        // adiconando ao contexto
         Context.Remove(entity);
     }
 
@@ -40,6 +44,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     public void Update(T entity)
     {
         entity.DateUpdated = DateTimeOffset.Now;
+        // adiconando ao contexto
         Context.Update(entity);
     }
 }

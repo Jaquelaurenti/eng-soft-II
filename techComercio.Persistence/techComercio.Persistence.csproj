@@ -14,6 +14,7 @@
     <None Remove="Repositories\" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
     <None Remove="Confluent.Kafka" />
+    <None Remove="Microsoft.Extensions.Caching.StackExchangeRedis" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Context\" />
@@ -22,5 +23,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.11" />
     <PackageReference Include="Confluent.Kafka" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.11" />
   </ItemGroup>
 </Project>

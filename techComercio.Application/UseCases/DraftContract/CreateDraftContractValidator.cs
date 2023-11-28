@@ -4,7 +4,15 @@ public sealed class CreateDraftContractValidator : AbstractValidator<CreateDraft
 {
     public CreateDraftContractValidator()
     {
-        RuleFor(x => x.Description).NotEmpty();
-        RuleFor(x => x.User).NotEmpty();
+        RuleFor(x => x.User);
+        RuleFor(x => x.Description);
     }
 }
+
+/*
+ * public TypePolicy TypePolicy { get; set; }
+    public UserPerfil UserPerfil { get; set; }
+    public bool ApplyDiscount { get; set; }
+    public double ValueDiscount { get; set; }
+    public double ValueCashback { get; set; }
+**/

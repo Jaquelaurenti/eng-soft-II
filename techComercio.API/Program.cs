@@ -13,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
 
 // Esse método precisamos criar na mão para subir nosso BD a nossa aplicação
@@ -24,3 +25,4 @@ app.UseSwaggerUI();
 app.UseCors();
 app.MapControllers();
 app.Run();
+

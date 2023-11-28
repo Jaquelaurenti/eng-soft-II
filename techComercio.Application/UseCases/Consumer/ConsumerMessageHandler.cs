@@ -3,11 +3,14 @@ using MediatR;
 
 public class ConsumerMessageHandler : IRequestHandler<ConsumerMessageRequest, string>
 {
-    //
+    // repository camada de dados
     private readonly IKafkaConsumer _kafkaConsumer;
+    // mapper
     private readonly IMapper _mapper;
 
-    public ConsumerMessageHandler(IKafkaConsumer kafkaConsumer, IMapper mapper)
+
+    public ConsumerMessageHandler(IKafkaConsumer kafkaConsumer,
+        IMapper mapper)
     {
         _kafkaConsumer = kafkaConsumer;
         _mapper = mapper;
@@ -15,12 +18,9 @@ public class ConsumerMessageHandler : IRequestHandler<ConsumerMessageRequest, st
 
     public async Task<string> Handle(ConsumerMessageRequest request, CancellationToken cancellationToken)
     {
-        // se inscrever no tópico
         _kafkaConsumer.Subscribe(request.topic, request.group);
-
-        // precisar consumir as mensagens
         await _kafkaConsumer.StartConsumingAsync(cancellationToken);
-        return _mapper.Map<string>("Ok");
 
+        return _mapper.Map<string>("OK");
     }
 }

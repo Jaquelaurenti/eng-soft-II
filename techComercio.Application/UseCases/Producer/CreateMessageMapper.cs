@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-public class CreateMessageMapper : Profile
+public class CreateMessageMapper : Profile
 {
     public CreateMessageMapper()
     {

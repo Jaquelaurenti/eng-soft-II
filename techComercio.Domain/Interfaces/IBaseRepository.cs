@@ -1,15 +1,16 @@
-﻿public interface IBaseRepository<T> where T : BaseEntity
+﻿
+// Classe interface genérica que servirá de base 
+public interface IBaseRepository<T> where T : BaseEntity
 {
-    public void Create(T entity); // INSERE NO BANCO DE DADOS
-    public void Update(T entity); // ALTERA UM REGISTRO NO BD
-    public void Delete(T entity); // DELETA O REGISTRO NO BD
+    public void Create(T entity);
+    public void Update(T entity);
+    public void Delete(T entity);
+    public Task<T> Get(Guid id, CancellationToken cancellationToken); 
+    public Task<List<T>> GetAll(CancellationToken cancellationToken); // Indicando que eu posso cancelar a operação, recurso da aspnetcore
 
-    public Task<T> Get(Guid id, CancellationToken cancellationToken); // LISTA OS DADOS DA ENTIDADE COM BASE NO ID
-    public Task<List<T>> GetAll(CancellationToken cancellationToken);  // LISTA A ENTIDADE POR COMPELTO
 }
 
-// As interfaces estarão fazendo vinculação do dominio com as demais camadas
-// garantindo um escopo pré definido para qualquer entidade
-
-// ESTA TRATANDO O DADO EM SI
-// OPEREAÇÕES AO DADO
+// Pq eu defino interface de repositorio na camada
+// de dominio ?
+// Pq essas interfaces que estão fazendo vinculação
+// do meu dominio com as demais camadas !! 

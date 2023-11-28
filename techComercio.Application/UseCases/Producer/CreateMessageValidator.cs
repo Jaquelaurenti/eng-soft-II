@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 
-public class CreateMessageValidator : AbstractValidator<CreateMessageRequest>
+
+public sealed class CreateMessageValidator : AbstractValidator<CreateMessageRequest>
 {
     public CreateMessageValidator()
     {

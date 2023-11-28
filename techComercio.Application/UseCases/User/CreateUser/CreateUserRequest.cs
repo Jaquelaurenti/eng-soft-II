@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
 public sealed record CreateUserRequest(
-        string Email, string Name, string Password,
-            UserPerfil UserPerfil, string Telephone) :
+        string Email, string Name, string Password, string Telephone,
+            UserPerfil UserPerfil) :
             IRequest<CreateUserResponse>;

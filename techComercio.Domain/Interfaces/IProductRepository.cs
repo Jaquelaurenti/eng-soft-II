@@ -1,3 +1,4 @@
-﻿public interface IProductRepository :IBaseRepository<Product>
+﻿public interface IProductRepository : IBaseRepository<Product>
 {
+
 }

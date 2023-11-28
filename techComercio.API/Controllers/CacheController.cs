@@ -4,19 +4,20 @@ using MediatR;
 // Nome da Rota
 [Route("api/[controller]")]
 [ApiController]
-public class DraftContractControler : ControllerBase
+public class CacheController : ControllerBase
 {
     IMediator _mediator;
 
-    public DraftContractControler(IMediator mediator)
+    public CacheController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(CreateDraftContractRequest request)
+    public async Task<IActionResult> Create(CacheRequest request)
     {
         var message = await _mediator.Send(request);
         return Ok(message);
     }
+
 }

@@ -2,5 +2,3 @@
 {
     Task Commit(CancellationToken cancellationToken);
 }
-
-// tratando operações a transação

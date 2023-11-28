@@ -10,45 +10,46 @@
     <ProjectReference Include="..\techComercio.Domain\techComercio.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
-    <None Remove="MediatR" />
-    <None Remove="FluentValidation" />
     <None Remove="Services\" />
     <None Remove="Shared\" />
     <None Remove="UseCases\" />
-    <None Remove="Shared\Behavior\" />
     <None Remove="Shared\Exceptions\" />
+    <None Remove="Shared\Behavior\" />
+    <None Remove="UseCases\User\" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="FluentValidation.DependencyInjectionExtensions" />
-    <None Remove="UseCases\CreatePolicies\" />
-    <None Remove="UseCases\CreateProducts\" />
-    <None Remove="UseCases\Message\" />
+    <None Remove="MediatR" />
+    <None Remove="UseCases\Policy\" />
     <None Remove="UseCases\Consumer\" />
-    <None Remove="UseCases\DraftContract\" />
+    <None Remove="UseCases\Producer\" />
     <None Remove="UseCases\Contract\" />
+    <None Remove="UseCases\DraftContract\" />
     <None Remove="UseCases\Notifications\" />
     <None Remove="Twilio" />
+    <None Remove="Microsoft.Extensions.Caching.Memory" />
+    <None Remove="StackExchange.Redis" />
+    <None Remove="Microsoft.Extensions.Caching.StackExchangeRedis" />
+    <None Remove="UseCases\Cache\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Shared\" />
     <Folder Include="UseCases\" />
-    <Folder Include="Shared\Behavior\" />
     <Folder Include="Shared\Exceptions\" />
-    <Folder Include="UseCases\CreatePolicies\" />
-    <Folder Include="UseCases\CreateProducts\" />
-    <Folder Include="UseCases\Message\" />
+    <Folder Include="Shared\Behavior\" />
+    <Folder Include="UseCases\User\" />
+    <Folder Include="UseCases\Policy\" />
     <Folder Include="UseCases\Consumer\" />
-    <Folder Include="UseCases\DraftContract\" />
+    <Folder Include="UseCases\Producer\" />
     <Folder Include="UseCases\Contract\" />
+    <Folder Include="UseCases\DraftContract\" />
     <Folder Include="UseCases\Notifications\" />
+    <Folder Include="UseCases\Cache\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Twilio" Version="6.11.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="UseCases\User\GetAllUser\CreateUserResponse.cs" />
   </ItemGroup>
 </Project>

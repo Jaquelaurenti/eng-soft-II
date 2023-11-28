@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+
 // Confiruar as extensões da nossa aplicação
 // Registrar os serviços para que posssamos utiliza-lo quando subirmos a aplicação
 

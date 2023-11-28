@@ -1,7 +1,8 @@
-﻿
-
+﻿// Na camada de Persistence ou infraestrutura
 using Confluent.Kafka;
 using System.Text.Json;
+using static Confluent.Kafka.ConfigPropertyNames;
+using Twilio.TwiML.Messaging;
 
 public class KafkaProducer : IKafkaProducer
 {
@@ -9,100 +10,98 @@ public class KafkaProducer : IKafkaProducer
 
     public KafkaProducer()
     {
-        // configura~]ao do servidor local do cluster do kafka
         var config = new ProducerConfig
         {
-            BootstrapServers = "localhost:9092", // Endereço do servidor do kafka
+            BootstrapServers = "localhost:9092", // Endereço do servidor Kafka
         };
-        // adicionando ao produtor o servidor do kafka
+
         _producer = new ProducerBuilder<string, string>(config).Build();
     }
 
     public async Task<Message> ProduceAsync(string topic, string sender, string receiver, string content)
     {
-
         var message = new Message
         {
-            Id = Guid.NewGuid(),
+            MessageId = Guid.NewGuid(),
             Sender = sender,
             Receiver = receiver,
             Content = content,
             Timestamp = DateTime.UtcNow,
             Status = "em processamento"
+            
         };
+        // Serializa a mensagem e envia para o Kafka
+        string serializedMessage = JsonSerializer.Serialize(message);
 
 
-        // Serializar a mensagem
-        string serielizedMessage = JsonSerializer.Serialize(message);
+        var deliveryReport = await _producer.ProduceAsync(topic, new Message<string, string> { Value = serializedMessage });
 
-        // chamar o método que produz a mensagem do confluente kafka
-        var deliveryReport = await _producer.ProduceAsync(topic, new Message<string, string>
-        {
-            Value = serielizedMessage
-        });
-
-        // verificar se a mensagem foi entregue com sucesso
+        // Verificar se a mensagem foi entregue com sucesso e lidar com erros, se necessário
         if (deliveryReport.Status == PersistenceStatus.NotPersisted)
         {
-            message.Status = " com erro";
+            message.Status = "com erro";
+            // Lidar com erros
             return message;
         }
         else
         {
-            message.Status = " com sucesso";
+            message.Status = "com sucesso";
             return message;
         }
 
     }
 
-    public async Task<Message> ProduceAsyncWithRetry(string topic, string sender,
-        string receiver, string content)
+    public async Task<Message> ProduceAsyncWithRetry(string topic, string sender, string receiver, string content)
     {
         var message = new Message
         {
-            Id = Guid.NewGuid(),
+            MessageId = Guid.NewGuid(),
             Sender = sender,
             Receiver = receiver,
             Content = content,
             Timestamp = DateTime.UtcNow,
             Status = "em processamento"
-        };
 
-        // Serializar a mensagem
-        string serielizedMessage = JsonSerializer.Serialize(message);
+        };
+        // Serializa a mensagem e envia para o Kafka
+        string serializedMessage = JsonSerializer.Serialize(message);
+
 
         int maxRetries = 3;
-        int retryIntervalms = 1000;
+        int retryIntervalMs = 1000;
 
-       for (int attemp = 1; attemp <= maxRetries; attemp ++)
-       {
+        for (int attempt = 1; attempt <= maxRetries; attempt++)
+        {
             try
             {
-                // tentativa que deu certo
-                // chamar o método que produz a mensagem do confluente kafka
-                var deliveryReport = await _producer.ProduceAsync(topic, new Message<string, string>
-                {
-                    Value = serielizedMessage
-                });
+                var deliveryReport = await _producer.ProduceAsync(topic, new Message<string, string> { Value = serializedMessage }); // Se você precisar de confirmação de entrega, pode verificar deliveryReport.Status.
 
+                // Se chegou até aqui, a mensagem foi enviada com sucesso.
                 message.Status = "com sucesso";
-                break;
-
+                
             }
-            catch(ProduceException<Null, string> ex)
+            catch (ProduceException<Null, string> ex)
             {
-                if(attemp < maxRetries)
+                Console.WriteLine($"Tentativa {attempt} falhou: {ex.Error.Reason}");
+
+                if (attempt < maxRetries)
                 {
-                    // começa a fazer as retentativas
-                    System.Threading.Thread.Sleep(retryIntervalms);
-                    message.Status = "Retry";                    
+                    Console.WriteLine($"Tentando novamente em {retryIntervalMs / 1000} segundos...");
+                    System.Threading.Thread.Sleep(retryIntervalMs);
+                    message.Status = "retry";
+                    // Lidar com erros
+                    
                 }
                 else
                 {
+                    // Se todas as tentativas falharam, propague a exceção para o chamador.
                     throw;
-                    message.Status = "com erro após o retry";                    
+                    message.Status = "com erro";
+                    // Lidar com erros
+                    
                 }
             }
+       
         }
         return message;
     }

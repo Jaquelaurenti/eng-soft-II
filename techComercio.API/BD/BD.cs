@@ -1,15 +1,19 @@
-﻿public class BD
+﻿
+public class BD
 {
+    
     public static void CreateDatabase(WebApplication app)
     {
-        // criar um escopo com o provedor de serviço
+        // criando um escopo do provedor de serviço
         var serviceScope = app.Services.CreateScope();
-
-        // obter o contexto
+        // obtendo o contexto
         var dataContext = serviceScope.ServiceProvider.GetService<AppDbContext>();
-
-        // valida se a instância n e nula
+        // validando se a instância do serviço não é nula
         dataContext?.Database.EnsureCreated();
-
+        // caso o banco não exista ele cria o modelo de dados do BD com base
+        // no que foi definido nas entidades da camada de domínio
+        // no ambiente de produção é recomendado aplicar as migrations
     }
+
 }
+

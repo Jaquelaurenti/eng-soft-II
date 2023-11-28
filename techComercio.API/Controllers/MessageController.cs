@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿    using Microsoft.AspNetCore.Mvc;
 using MediatR;
 
 // Nome da Rota
 [Route("api/[controller]")]
 [ApiController]
-public class MessageControler : ControllerBase
+public class MessageController : ControllerBase
 {
     IMediator _mediator;
 
-    public MessageControler(IMediator mediator)
+    public MessageController(IMediator mediator)
     {
         _mediator = mediator;
     }
@@ -19,4 +19,5 @@ public class MessageControler : ControllerBase
         var message = await _mediator.Send(request);
         return Ok(message);
     }
+
 }

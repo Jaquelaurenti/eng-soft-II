@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-public class CreateDraftContractMapper : Profile
+public class CreateDraftContractMapper : Profile
 {
     public CreateDraftContractMapper()
     {

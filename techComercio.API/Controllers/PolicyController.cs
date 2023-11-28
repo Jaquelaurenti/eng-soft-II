@@ -4,7 +4,7 @@ using MediatR;
 // Nome da Rota
 [Route("api/[controller]")]
 [ApiController]
-public class PolicyController : ControllerBase 
+public class PolicyController : ControllerBase
 {
     IMediator _mediator;
 
